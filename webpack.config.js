@@ -41,5 +41,10 @@ module.exports = {
       template: "./src/index.html",
       filename: "./index.html"
     })
-  ]
+  ],
+  optimization: {
+     splitChunks: {
+       chunks: 'all'
+     }
+   }
 };
