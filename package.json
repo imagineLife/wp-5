@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "local": "webpack serve --env mode=development --env API_URL=google.com",
-    "build": "webpack -- --progress --env water=melon --env juice=box --env mode=production",
+    "build": "webpack -- --progress --env water=melon --env juice=box --env mode=production --env API_URL=Juic",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
