@@ -1,5 +1,7 @@
 import React from 'react';
 
-const Box = () => (<p>Box</p>);
+const Box = () => {
+return (<p>Box Water</p>)
+};
 
 export default Box;
