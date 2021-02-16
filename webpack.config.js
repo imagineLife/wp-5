@@ -4,6 +4,9 @@ const path = require("path");
 module.exports = (env) => {
   return {
     mode: env.mode,
+    output: {
+      filename: '[contenthash].bundle.js',
+    },
     module: {
       rules: [
         {
