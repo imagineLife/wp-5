@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require("path");
 const { DefinePlugin } = require('webpack')
 
@@ -49,7 +50,8 @@ module.exports = (env) => {
       }),
       new DefinePlugin({
         API_URL: JSON.stringify(env.API_URL)
-      })
+      }),
+      new CleanWebpackPlugin()
     ],
     optimization: {
       splitChunks: {
