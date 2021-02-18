@@ -7,7 +7,7 @@ module.exports = (env) => {
   return {
     mode: env.mode,
     output: {
-      filename: '[contenthash].bundle.js',
+      filename: '[contenthash].js',
     },
     module: {
       rules: [
@@ -20,15 +20,6 @@ module.exports = (env) => {
               presets: ["@babel/react"]
             }
           }
-        },
-        {
-          test: /\.html$/,
-          use: [
-            {
-              loader: "html-loader",
-              options: { minimize: true }
-            }
-          ]
         },
         {
           test: /\.s[ac]ss$/i,
@@ -55,7 +46,15 @@ module.exports = (env) => {
     ],
     optimization: {
       splitChunks: {
-        chunks: 'all'
+        chunks: 'all',
+         cacheGroups: {
+          vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendor',
+          enforce: true
+          },
+        }
       }
     }
   }
