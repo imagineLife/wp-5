@@ -4,8 +4,6 @@ const path = require("path");
 const { DefinePlugin } = require('webpack')
 const { merge } = require('webpack-merge')
 const baseConfig = require('./common.webpack')
-console.log('baseConfig')
-console.log(baseConfig)
 
 module.exports = (env) => {  
   const mergedConfig = merge(
@@ -23,8 +21,5 @@ module.exports = (env) => {
       ]
     }
   )
-  console.log('mergedConfig')
-  console.log(JSON.stringify(mergedConfig))
-  
   return mergedConfig
 };
