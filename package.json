@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "local": "webpack serve -- --config build-utils/webpack.config.js --env mode=development",
-    "local:nlz": "npm run local -- --env presets.analyze",
     "build": "webpack -- --config build-utils/webpack.config.js --progress --env water=melon --env juice=box --env mode=production --env API_URL=Juic",
+    "build-analyze": "npm run build -- --env presets.analyze",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
