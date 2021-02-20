@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "local": "webpack serve -- --config build-utils/webpack.config.js --env mode=development --env API_URL=google.com",
+    "local": "webpack serve -- --config build-utils/webpack.config.js --env mode=development",
+    "local:nlz": "npm run local -- --env presets.analyze",
     "build": "webpack -- --config build-utils/webpack.config.js --progress --env water=melon --env juice=box --env mode=production --env API_URL=Juic",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
+    "webpack-bundle-analyzer": "^4.4.0",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.3"
   }
