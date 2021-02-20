@@ -4,9 +4,16 @@ const path = require("path");
 const { DefinePlugin } = require('webpack')
 const { merge } = require('webpack-merge')
 const baseConfig = require('./common.webpack')
+const presetConfig = require('./loadPresets')
+const presetsFromVars = require(`./presetsFromVars`)
+const wpBundleAnalyzer = require('webpack-bundle-analyzer');
+const baPlugin = wpBundleAnalyzer.BundleAnalyzerPlugin;
 
 module.exports = (env) => {  
-  const mergedConfig = merge(
+  console.log('env')
+  console.log(env)
+  
+  return merge(
     baseConfig(env.mode),
     {
       plugins: [
@@ -19,7 +26,7 @@ module.exports = (env) => {
         }),
         new CleanWebpackPlugin()
       ]
-    }
+    },
+    presetsFromVars({mode: env.mode, presets: env.presets})
   )
-  return mergedConfig
 };
