@@ -5,35 +5,31 @@
 		creating smaller configs that can be appended to the 
 		ROOT config
 */
-const { merge } = require('webpack-merge')
+const {merge, mergeWithCustomize} = require('webpack-merge')
 
 const applyPresets = env => {
-	console.log('applyPresets env')
-  console.log(env)
-  
+	console.log('----applyPresets----')
+	console.log('env')
+	console.log(env)
+	
 	const { presets } = env;
+	const preset = Object.keys(presets)[0]
+	
 
 	//return arr of strs, arr of preset names
-	const mergedPresets = [].concat(...[Object.keys(presets)]);
-  console.log('mergedPresets')
-  console.log(mergedPresets)
-  
-
+	const mergedPresets = [].concat(...[preset]);
+	
 	//loop through presets, by name, && require each preset
 	//call each preset passing env to the preset
 	const mergedConfigs = mergedPresets.map(presetName => {
 		if(presetName){
-      let reqStr = `./presets/webpack.${presetName}`
-			require(reqStr)(env)
+			require(`./presets/webpack.${presetName}`)(env)
 		}
 	}
   );
-  console.log('mergedConfigs')
-  console.log(mergedConfigs)
-  
-
+	
 	//returns the MERGED wpConfing including the presets
-	return merge({}, ...mergedConfigs)
+	return mergeWithCustomize({}, ...mergedConfigs)
 }
 
 module.exports = applyPresets
