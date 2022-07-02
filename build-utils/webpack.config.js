@@ -9,24 +9,23 @@ const presetsFromVars = require(`./presetsFromVars`)
 const wpBundleAnalyzer = require('webpack-bundle-analyzer');
 const baPlugin = wpBundleAnalyzer.BundleAnalyzerPlugin;
 
-module.exports = (env) => {  
-  console.log('env')
-  console.log(env)
-  
+module.exports = (env, config) => {  
+ console.log('Webpack Env: ',env)
+  const plugins = [new HtmlWebpackPlugin({
+    template: "./src/index.html",
+    filename: "./index.html"
+  })];
+  if (env?.mode === 'production') {
+    plugins.push(
+        new DefinePlugin({
+          API_URL: JSON.stringify(env.API_URL),
+        }),
+        new CleanWebpackPlugin(),
+    )
+  }
   return merge(
     baseConfig(env.mode),
-    {
-      plugins: [
-        new HtmlWebpackPlugin({
-          template: "./src/index.html",
-          filename: "./index.html"
-        }),
-        new DefinePlugin({
-          API_URL: JSON.stringify(env.API_URL)
-        }),
-        new CleanWebpackPlugin()
-      ]
-    },
+    { plugins },
     presetsFromVars({mode: env.mode, presets: env.presets})
   )
 };
