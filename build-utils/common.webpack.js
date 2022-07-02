@@ -1,12 +1,16 @@
 const path = require('path');
 const baseConfigFn = (mode) => {
   const FRONTEND_OUTPUT_DIR = 'frontend-src';
-  const OUTPUT_STR = '[contenthash].js';
-  return {
+  const OUTPUT_STR_OBJ = {
+    production: '[contenthash].js',
+    development: '[name].js'
+  };
+  const config = {
     mode,
     output: {
-      filename: OUTPUT_STR,
+      filename: OUTPUT_STR_OBJ[`${mode}`],
       path: path.resolve(__dirname, FRONTEND_OUTPUT_DIR),
+      asyncChunks: true,
     },
     module: {
       rules: [
@@ -47,6 +51,13 @@ const baseConfigFn = (mode) => {
       },
     },
   };
+
+  if (mode === 'development') { 
+    console.log('INLINE-SOURCE-MAP devtools in webpack config');
+    
+    config.devtool = 'inline-source-map'
+  }
+  return config
 }
 
 module.exports = baseConfigFn
