@@ -8,7 +8,7 @@ module.exports = (({mode, presets}) => {
   
   let plugins = []
 
-  if(presets.analyze){
+  if(presets?.analyze){
     plugins.push(new baPlugin())
   }
 
