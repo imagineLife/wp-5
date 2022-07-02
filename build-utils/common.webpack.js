@@ -1,6 +1,8 @@
 const path = require('path');
 const baseConfigFn = (mode) => {
-  const FRONTEND_OUTPUT_DIR = 'frontend-src';
+  const FRONTEND_OUTPUT_DIR = '../frontend-src';
+  const outputPath = path.resolve(__dirname, FRONTEND_OUTPUT_DIR)
+  
   const OUTPUT_STR_OBJ = {
     production: '[contenthash].js',
     development: '[name].js'
@@ -9,7 +11,7 @@ const baseConfigFn = (mode) => {
     mode,
     output: {
       filename: OUTPUT_STR_OBJ[`${mode}`],
-      path: path.resolve(__dirname, FRONTEND_OUTPUT_DIR),
+      path: outputPath,
       asyncChunks: true,
     },
     module: {
