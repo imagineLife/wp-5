@@ -8,7 +8,7 @@ const presetConfig = require('./loadPresets')
 const presetsFromVars = require(`./presetsFromVars`)
 const wpBundleAnalyzer = require('webpack-bundle-analyzer');
 const baPlugin = wpBundleAnalyzer.BundleAnalyzerPlugin;
-
+const miniCSS = require('mini-css-extract-plugin')
 module.exports = (env, config) => {  
   console.log('Webpack Env: ', env)
   
@@ -17,6 +17,7 @@ module.exports = (env, config) => {
     filename: "./index.html"
   })];
   
+  // production plugins
   if (env?.mode === 'production') {
     plugins.push(
         new DefinePlugin({
@@ -24,6 +25,7 @@ module.exports = (env, config) => {
         }),
         new CleanWebpackPlugin(),
     )
+    plugins.push(new miniCSS());
   }
   return merge(
     baseConfig(env.mode),

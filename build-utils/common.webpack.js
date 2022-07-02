@@ -1,12 +1,27 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const baseConfigFn = (mode) => {
-  const FRONTEND_OUTPUT_DIR = '../frontend-src';
+  const FRONTEND_OUTPUT_DIR = '../dist';
   const outputPath = path.resolve(__dirname, FRONTEND_OUTPUT_DIR)
   
   const OUTPUT_STR_OBJ = {
     production: '[contenthash].js',
     development: '[name].js'
   };
+
+  const styleConfig = {
+    test: /\.s[ac]ss$/i,
+    use: [
+      // Creates `style` nodes from JS strings
+      mode === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+      // Translates CSS into CommonJS
+      'css-loader',
+      // Compiles Sass to CSS
+      'sass-loader',
+    ],
+  };
+
   const config = {
     mode,
     output: {
@@ -27,15 +42,7 @@ const baseConfigFn = (mode) => {
           },
         },
         {
-          test: /\.s[ac]ss$/i,
-          use: [
-            // Creates `style` nodes from JS strings
-            'style-loader',
-            // Translates CSS into CommonJS
-            'css-loader',
-            // Compiles Sass to CSS
-            'sass-loader',
-          ],
+          ...styleConfig
         },
       ],
     },
