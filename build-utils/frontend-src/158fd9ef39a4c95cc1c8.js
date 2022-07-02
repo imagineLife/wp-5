@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwp_5=self.webpackChunkwp_5||[]).push([[350],{350:(e,t,a)=>{a.r(t),a.d(t,{default:()=>p});var l=a(294);const p=()=>l.createElement("p",null,"Box Water")}}]);

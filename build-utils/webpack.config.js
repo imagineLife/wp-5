@@ -10,11 +10,13 @@ const wpBundleAnalyzer = require('webpack-bundle-analyzer');
 const baPlugin = wpBundleAnalyzer.BundleAnalyzerPlugin;
 
 module.exports = (env, config) => {  
- console.log('Webpack Env: ',env)
+  console.log('Webpack Env: ', env)
+  
   const plugins = [new HtmlWebpackPlugin({
     template: "./src/index.html",
     filename: "./index.html"
   })];
+  
   if (env?.mode === 'production') {
     plugins.push(
         new DefinePlugin({

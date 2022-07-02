@@ -1,8 +1,12 @@
+const path = require('path');
 const baseConfigFn = (mode) => {
+  const FRONTEND_OUTPUT_DIR = 'frontend-src';
+  const OUTPUT_STR = '[contenthash].js';
   return {
     mode,
     output: {
-      filename: '[contenthash].js',
+      filename: OUTPUT_STR,
+      path: path.resolve(__dirname, FRONTEND_OUTPUT_DIR),
     },
     module: {
       rules: [
@@ -10,39 +14,39 @@ const baseConfigFn = (mode) => {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: ["@babel/react"]
-            }
-          }
+              presets: ['@babel/react'],
+            },
+          },
         },
         {
           test: /\.s[ac]ss$/i,
           use: [
             // Creates `style` nodes from JS strings
-            "style-loader",
+            'style-loader',
             // Translates CSS into CommonJS
-            "css-loader",
+            'css-loader',
             // Compiles Sass to CSS
-            "sass-loader",
+            'sass-loader',
           ],
-        }
-      ]
+        },
+      ],
     },
     optimization: {
       splitChunks: {
         chunks: 'all',
-         cacheGroups: {
+        cacheGroups: {
           vendor: {
-          test: /node_modules/,
-          chunks: 'initial',
-          name: 'vendor',
-          enforce: true
+            test: /node_modules/,
+            chunks: 'initial',
+            name: 'vendor',
+            enforce: true,
           },
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  };
 }
 
 module.exports = baseConfigFn
