@@ -1,5 +1,5 @@
 import React, { Fragment, useState, Suspense, lazy } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 
 const Box = lazy(()=> import('./Box'));
 
@@ -36,7 +36,5 @@ const Header = () => {
   </Fragment>
   }
 
-ReactDOM.render(
-    <Header />,
-  document.getElementById("root")
-);
+const rootContainer = createRoot(document.getElementById('root'));
+rootContainer.render(<Header />);
