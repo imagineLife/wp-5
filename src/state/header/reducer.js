@@ -1,8 +1,8 @@
-const boxReducerTypes = {
+const headerReducerTypes = {
   CLICK_BTN: 'CLICK_BTN',
 };
 
-function boxReducer(state, { type, payload }) {
+function headerReducer(state, { type, payload }) {
   const reducerObj = {
     CLICK_BTN: () => ({
       clicked: true,
@@ -15,6 +15,6 @@ function boxReducer(state, { type, payload }) {
 }
 
 export {
-  boxReducer,
-  boxReducerTypes
+  headerReducer,
+  headerReducerTypes
 }

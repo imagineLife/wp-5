@@ -2,16 +2,14 @@ import React, { Fragment, useReducer, Suspense, lazy } from "react";
 import { createRoot } from "react-dom/client";
 
 import {
-  boxInitState,
-  boxReducer,
-  boxReducerTypes
+  headerInitState,
+  headerReducer,
+  headerReducerTypes
 } from './state'
 const Box = lazy(()=> import('./Box'));
 
 const Header = () => {
-  const [{ clicked, see }, dispatch] = useReducer(boxReducer, boxInitState);
-  // console.log('{clicked, see}')
-  // console.log({clicked, see})
+  const [{ clicked, see }, dispatch] = useReducer(headerReducer, headerInitState);
   
   console.log('%c Header render', 'background-color: pink; color: black;');
   
@@ -29,7 +27,7 @@ const Header = () => {
     <p>With a button that is clickable && a state to update, the un-used react elements go down to 41% after clicking.</p>
 
     <button onClick={(e) => {
-      dispatch({ type: boxReducerTypes.CLICK_BTN });
+      dispatch({ type: headerReducerTypes.CLICK_BTN });
     }}>Click</button>
 
 

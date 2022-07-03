@@ -1,11 +1,11 @@
 import {
-  initialState as boxInitState,
-  boxReducer,
-  boxReducerTypes
-} from './box'
+  initialState as headerInitState,
+  headerReducer,
+  headerReducerTypes
+} from './header'
 
 export {
-  boxInitState,
-  boxReducer,
-  boxReducerTypes
+  headerInitState,
+  headerReducer,
+  headerReducerTypes
 };
